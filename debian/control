@@ -2,7 +2,7 @@ Source: tardiff
 Maintainer: Maks Verver <maks@verver.ch>
 Section: misc
 Priority: optional
-Standards-Version: 1.0
+Standards-Version: 1.0.0
 Build-Depends: debhelper (>= 11), build-essential, libssh-dev, zlib1g-dev
 
 Package: tardiff
