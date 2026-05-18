@@ -3,27 +3,30 @@ OBJS=common.o binsort.o patch-forward.o patch-backward.o \
 	identify.o tardiff.o tarpatch.o tardiffmerge.o tardiffinfo.o main.o
 LDLIBS=-lcrypto -lz
 
+BINDIR = $(DESTDIR)$(PREFIX)/bin
+NAME = tardiff
+
 all: tardiff
 
 tardiff: $(OBJS)
-	$(CC) $(LDFLAGS) -o tardiff $(OBJS) $(LDLIBS)
+	$(CC) $(LDFLAGS) -o $(NAME) $(OBJS) $(LDLIBS)
 
 install: all
-	install -s tardiff $(PREFIX)/bin/
-	ln -sf tardiff $(PREFIX)/bin/tarpatch
-	ln -sf tardiff $(PREFIX)/bin/tardiffmerge
-	ln -sf tardiff $(PREFIX)/bin/tardiffinfo
+	install -s $(NAME) $(BINDIR)/
+	ln -sf $(NAME) $(BINDIR)/tarpatch
+	ln -sf $(NAME) $(BINDIR)/tardiffmerge
+	ln -sf $(NAME) $(BINDIR)/tardiffinfo
 
 uninstall:
-	rm -f $(PREFIX)/bin/tardiff
-	rm -f $(PREFIX)/bin/tarpatch
-	rm -f $(PREFIX)/bin/tardiffmerge
-	rm -f $(PREFIX)/bin/tardiffinfo
+	rm -f $(BINDIR)/tardiff
+	rm -f $(BINDIR)/tarpatch
+	rm -f $(BINDIR)/tardiffmerge
+	rm -f $(BINDIR)/tardiffinfo
 
 clean:
 	rm -f *.o
 
 distclean: clean
-	rm -f tardiff
+	rm -f $(NAME)
 
 .PHONY: all clean distclean install uninstall
