@@ -12,6 +12,7 @@ tardiff: $(OBJS)
 	$(CC) $(LDFLAGS) -o $(NAME) $(OBJS) $(LDLIBS)
 
 install: all
+	mkdir -p $(BINDIR)
 	install -s $(NAME) $(BINDIR)/
 	ln -sf $(NAME) $(BINDIR)/tarpatch
 	ln -sf $(NAME) $(BINDIR)/tardiffmerge
